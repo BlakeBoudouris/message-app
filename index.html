@@ -1,15 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Message App</title>
-    <base href="/message-app/">
-  </head>
-  <body>
-    <div class="actions">
-      <a class="action new" href="./">New</a>
-      <a class="action join" href="">Join</a>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="styles.css">
+  <title>Messenger</title>
+</head>
+<body>
+
+  <div class="header">
+    <h2>Telemet Messenger</h2>
+  </div>
+
+  <div class="container">
+    <div class="chat-side left" id="leftMessages">
+      <h3 class="sticky-header">User 2</h3>
+      <!-- Messages from other user will appear here -->
     </div>
-    <div class="board"></div>
-    <script src="main.js" type="module"></script>
-  </body>
+    <div class="chat-side right" id="rightMessages">
+      <h3 class="sticky-header">User 1</h3>
+      <!-- Your messages will appear here -->
+    </div>
+  </div>
+
+  <div class="input-area">
+    <input type="text" id="messageInput" placeholder="Type a message..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+  <script>
+    function sendMessage() {
+      const input = document.getElementById("messageInput");
+      const message = input.value.trim();
+      if (message === "") return;
+
+      const rightMessages = document.getElementById("rightMessages");
+      const msgDiv = document.createElement("div");
+      msgDiv.className = "message";
+      msgDiv.textContent = message;
+      rightMessages.appendChild(msgDiv);
+
+      input.value = "";
+    }
+  </script>
+
+</body>
 </html>
